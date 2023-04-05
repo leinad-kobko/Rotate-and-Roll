@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuScript : MonoBehaviour
+public class MenuAnimations : MonoBehaviour
 {
     [Header("References")]
     public GameObject TopO;
@@ -13,6 +13,7 @@ public class MenuScript : MonoBehaviour
     Vector3 originalOrbPos;
     Vector3 originalLeftEyePos;
     Vector3 originalRightEyePos;
+    float displacement;
     
     [Header("General")]
     public float oRotationSpeed = 30f;
@@ -31,6 +32,7 @@ public class MenuScript : MonoBehaviour
     {
         topTransform = TopO.GetComponent<RectTransform>();
         botTransform = BottomO.GetComponent<RectTransform>();
+        
         animateUp = true;
 
         // Save the original positions of some of the objects
@@ -42,10 +44,11 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        displacement = orbMoveSpeed * Time.deltaTime;
         RotateOs();
         OrbUpDownAnimation();
-        parallaxEye2Mouse("left");
-        parallaxEye2Mouse("right");
+        // parallaxEye2Mouse("left");
+        // parallaxEye2Mouse("right");
     }
 
     // Rotate the Os at oRotationSpeed degrees per second
